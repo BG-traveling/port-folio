@@ -17,17 +17,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className={inter.className + " bg-gray-50 min-h-screen"}>
-        {/* AWS 스타일 네비게이션 */}
-        <nav className="fixed top-0 left-0 w-full bg-white border-b border-gray-200 shadow-sm z-50">
+      <body className={inter.className + " bg-darkbg text-gray-100 min-h-screen"}>
+        {/* 다크 클라우드 스타일 네비게이션 */}
+        <nav className="fixed top-0 left-0 w-full bg-darkcard/90 border-b border-gray-800 shadow-lg z-50 backdrop-blur-md">
           <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-6">
-            <Link href="/" className="font-bold text-blue-700 text-xl tracking-tight">포트폴리오</Link>
+            <Link href="/" className="font-bold text-neonblue text-xl tracking-tight drop-shadow-glow animate-glow">포트폴리오</Link>
             <ul className="flex space-x-8 text-base font-medium">
-              <li><Link href="/" className="hover:text-blue-600 transition">홈</Link></li>
-              <li><Link href="/projects" className="hover:text-blue-600 transition">프로젝트</Link></li>
-              <li><Link href="/posts" className="hover:text-blue-600 transition">글 목록</Link></li>
-              <li><Link href="/resume" className="hover:text-blue-600 transition">이력서</Link></li>
-              <li><Link href="/about" className="hover:text-blue-600 transition">자기소개</Link></li>
+              <li><Link href="/" className="hover:text-neonblue transition">홈</Link></li>
+              <li><Link href="/projects" className="hover:text-neonblue transition">프로젝트</Link></li>
+              <li><Link href="/posts" className="hover:text-neonblue transition">글 목록</Link></li>
+              <li><Link href="/resume" className="hover:text-neonblue transition">이력서</Link></li>
+              <li><Link href="/about" className="hover:text-neonblue transition">자기소개</Link></li>
             </ul>
           </div>
         </nav>
