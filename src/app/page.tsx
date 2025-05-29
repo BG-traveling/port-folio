@@ -3,6 +3,25 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react';
 import { FaUserCircle, FaPlus, FaFileAlt } from 'react-icons/fa';
 
+function ProfileIntro({ intro }: { intro: string }) {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div className="mb-2 max-w-xl text-gray-600 text-center md:text-left">
+      <div className={expanded ? 'whitespace-pre-line break-words' : 'whitespace-pre-line break-words line-clamp-3'}>
+        {intro}
+      </div>
+      {intro && intro.length > 60 && (
+        <button
+          className="mt-1 text-blue-600 hover:underline text-sm"
+          onClick={() => setExpanded((v) => !v)}
+        >
+          {expanded ? '접기' : '더보기'}
+        </button>
+      )}
+    </div>
+  );
+}
+
 export default function Home() {
   // 최근 프로젝트, 기술스택, 최근 글 불러오기
   const [projects, setProjects] = useState<any[]>([]);
@@ -24,7 +43,7 @@ export default function Home() {
         <div className="flex-shrink-0 flex flex-col items-center md:items-start">
           <FaUserCircle className="text-blue-400 text-7xl mb-2" />
           <div className="text-2xl font-bold text-gray-800 mb-1">{resume?.name || '김동현'}</div>
-          <div className="text-gray-600 mb-2">{about?.intro || '포트폴리오에 오신 것을 환영합니다.'}</div>
+          <ProfileIntro intro={about?.intro || '포트폴리오에 오신 것을 환영합니다.'} />
           <div className="flex gap-2 mt-2">
             <Link href="/projects/write" className="flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow transition"><FaPlus className="mr-2" />프로젝트 등록</Link>
             <Link href="/write" className="flex items-center bg-gray-100 hover:bg-blue-50 text-blue-700 font-bold py-2 px-4 rounded-lg border border-blue-200 shadow transition"><FaPlus className="mr-2" />글 작성</Link>
@@ -60,13 +79,14 @@ export default function Home() {
       {/* 기술 스택 */}
       <section>
         <h2 className="text-2xl font-bold mb-4 text-blue-700">기술 스택</h2>
-        <div className="flex flex-wrap gap-4">
-          {(resume?.frontend || 'React, Next.js, TypeScript, TailwindCSS, AWS, Docker, Kubernetes, Linux').split(',').map((item: string, i: number) => (
-            <span key={i} className="bg-white border border-gray-200 shadow rounded-lg px-5 py-2 text-blue-700 font-semibold text-base">{item.trim()}</span>
-          ))}
-          {(resume?.backend || 'Node.js, Express, MongoDB').split(',').map((item: string, i: number) => (
-            <span key={i+100} className="bg-white border border-gray-200 shadow rounded-lg px-5 py-2 text-green-700 font-semibold text-base">{item.trim()}</span>
-          ))}
+        <div className="bg-white rounded-xl shadow-md border border-gray-200 p-6">
+          <div className="relative w-full aspect-[3/4]">
+            <img 
+              src="/skills.png" 
+              alt="기술 스택 상세" 
+              className="w-full h-full object-contain rounded-lg"
+            />
+          </div>
         </div>
       </section>
 
