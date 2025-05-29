@@ -11,26 +11,22 @@ export default function Projects() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold">프로젝트</h1>
-        <Link href="/projects/write" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">+ 새 프로젝트</Link>
+        <h1 className="text-4xl font-bold text-neonblue drop-shadow-glow">프로젝트</h1>
+        <Link href="/projects/write" className="bg-gradient-to-r from-neonblue to-neonpurple text-white px-4 py-2 rounded-xl shadow-lg hover:from-neonpurple hover:to-neonblue hover:scale-105 transition-all duration-200 animate-fade-in font-bold">+ 새 프로젝트</Link>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project) => (
-          <div key={project.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-              <p className="text-gray-600 mb-4">{project.description}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.techs?.map((tech: string) => (
-                  <span key={tech} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">{tech}</span>
-                ))}
-              </div>
-              {project.image && <img src={project.image} alt="프로젝트 이미지" className="mb-2 max-h-32 rounded" />}
-              <Link href={`/projects/${project.id}`} className="text-blue-600 hover:text-blue-800">
-                자세히 보기 →
-              </Link>
+        {projects.map((project, i) => (
+          <div key={project.id} className="bg-darkcard rounded-2xl shadow-xl border border-gray-800 p-6 flex flex-col animate-fade-in" style={{ animationDelay: `${i * 60}ms` }}>
+            <div className="font-semibold text-lg mb-2 truncate text-neonblue">{project.title}</div>
+            <div className="text-gray-200 mb-2 line-clamp-2">{project.description}</div>
+            <div className="flex flex-wrap gap-2 mb-2">
+              {project.techs?.map((tech: string) => (
+                <span key={tech} className="px-3 py-1 bg-darkbg text-neonblue rounded-full text-xs font-semibold border border-neonblue/30">{tech}</span>
+              ))}
             </div>
+            {project.file && project.file.startsWith("data:image") && <img src={project.file} alt="썸네일" className="rounded mb-2 max-h-32 object-cover border border-neonblue" />}
+            <Link href={`/projects/${project.id}`} className="mt-auto text-neonblue hover:underline font-medium">자세히 보기 →</Link>
           </div>
         ))}
       </div>

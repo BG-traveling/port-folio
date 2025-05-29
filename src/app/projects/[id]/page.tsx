@@ -28,21 +28,23 @@ export default function ProjectDetail() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-2xl">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold">{project.title}</h1>
+        <h1 className="text-3xl font-bold text-neonblue drop-shadow-glow">{project.title}</h1>
         <div className="space-x-2">
-          <button onClick={() => router.push(`/projects/${project.id}/edit`)} className="px-3 py-1 bg-yellow-400 text-white rounded">수정</button>
-          <button onClick={handleDelete} className="px-3 py-1 bg-red-500 text-white rounded">삭제</button>
+          <button onClick={() => router.push(`/projects/${project.id}/edit`)} className="px-3 py-1 bg-gradient-to-r from-neonblue to-neonpurple text-white rounded-xl shadow-lg hover:from-neonpurple hover:to-neonblue hover:scale-105 transition-all duration-200 font-bold">수정</button>
+          <button onClick={handleDelete} className="px-3 py-1 bg-red-500 text-white rounded-xl shadow-lg hover:bg-red-600 hover:scale-105 transition-all duration-200 font-bold">삭제</button>
         </div>
       </div>
-      <div className="mb-2 text-gray-600">{project.description}</div>
+      <div className="mb-2 text-gray-200">{project.description}</div>
       <div className="flex flex-wrap gap-2 mb-4">
         {project.techs?.map((tech: string) => (
-          <span key={tech} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">{tech}</span>
+          <span key={tech} className="px-3 py-1 bg-darkbg text-neonblue rounded-full text-xs font-semibold border border-neonblue/30">{tech}</span>
         ))}
       </div>
-      {project.image && <img src={project.image} alt="프로젝트 이미지" className="mb-4 max-h-64 rounded" />}
-      <div className="text-gray-800 whitespace-pre-line mb-8">{project.content}</div>
-      <a href="/projects" className="text-blue-600 hover:underline">← 프로젝트 목록으로</a>
+      {project.file && project.file.startsWith("data:image") && <img src={project.file} alt="프로젝트 이미지" className="mb-4 max-h-64 rounded border border-neonblue" />}
+      <div className="bg-darkcard rounded-2xl shadow-xl border border-gray-800 p-6 mb-8">
+        <div className="text-gray-100 whitespace-pre-line">{project.content}</div>
+      </div>
+      <a href="/projects" className="text-neonblue hover:underline">← 프로젝트 목록으로</a>
     </div>
   );
 } 
